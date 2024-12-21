@@ -12,12 +12,43 @@ cd Module_HopamchuanCrawl
 
 ## Usage 
 
-1. Import 
+### 0. Import 
 ```javascript
 const HAC = require('Module_HopamchuanCrawl')
 ```
 
-2. Tìm kiểm bài hát 
+### 1. Example 
+Sương sương use case 
+```javascript 
+(async () => {
+    // search songs 
+    const keyword = "con mua ngang qua";
+    const songs = await HAC.searchSongs(keyword);
+
+    // based on use case, get the song by songId 
+    const songFound = songs.find(e => e.songId === '2691'); 
+
+    // get con mua ngang qua for example and return song details 
+    const cmnq = await HAC.showSong('2691'); 
+
+    // save song 
+    HAC.storeSong(cmnq); 
+
+    // get all saved songs 
+    console.log(HAC.getStoredSongs()); 
+
+    // get song with id 
+    console.log(HAC.getStoredSong('2691')); 
+    
+    // delete song 
+    HAC.deleteSong('2691'); 
+
+    // and return song not found 
+    console.log(HAC.getStoredSong('2691')); 
+})();
+```
+
+### 2. Tìm kiểm bài hát 
 ```javascript
 const keyword = "con mua ngang qua";
 const songs = await HAC.searchSongs(keyword);
@@ -25,13 +56,13 @@ console.log(songs) // Các bài hát tìm được (songId, title, artist)
 ```
 (Mấy cái sau sẽ dùng songId cho tiện)
 
-3. Chi tiết bài hát 
+### 3. Chi tiết bài hát 
 ```javascript 
 const songDetails = await HAC.showSong(songId);
 ```
 Nhả ra songId, title, artist, lyric kèm hợp âm 
 
-4. Lưu/lấy bài hát
+### 4. Lưu/lấy bài hát
 ```javascript 
 const song = {
     songId: "221224",
@@ -43,6 +74,12 @@ const song = {
 HAC.storeSong(song); // Lưu bài hát
 const storedSongs = HAC.getStoredSongs(); // Lấy tất cả bài hát đã lưu
 const song = HAC.getStoredSong("221224"); // Lấy bài hát bằng songId 
+```
+
+### 5. Xóa bài hát 
+```javascript 
+HAC.deleteSong("221224"); // Lưu bài hát
+const song = HAC.getStoredSong("221224"); // Trả về Song not found
 ```
 
 ## License 

@@ -1,4 +1,3 @@
-const axios = require('axios');
 const cheerio = require('cheerio');
 
 const baseUrl = 'https://hopamchuan.com';
@@ -33,6 +32,9 @@ class HAC {
             lyric
         }
         this.storedSongs.push(savedSong);
+    }
+    deleteSong(songId) {
+        this.storedSongs = this.storedSongs.filter(e => e.songId !== songId); 
     }
 
     async showSong(songId) {
