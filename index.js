@@ -126,6 +126,20 @@ class HAC {
         return song;
     }
 
+    extractChords(lyric, unique = true) {
+        const chordPattern = /\[([A-Za-z#]+)\]/g; 
+        let chords = []; 
+        let match; 
+
+        while ((match = chordPattern.exec(lyric)) !== null) {
+            chords.push(match[1]);
+        }
+
+        if (unique) chords = [...new Set(chords)]; 
+        
+        return chords; 
+    }
+
     searchArtist() {
 
     }

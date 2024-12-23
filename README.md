@@ -82,6 +82,14 @@ HAC.deleteSong("221224"); // Lưu bài hát
 const song = HAC.getStoredSong("221224"); // Trả về Song not found
 ```
 
+### 6. Lấy hợp âm
+```javascript 
+const song = showSong("2691")
+const chords = HAC.extractChords(song.lyric, false); // Lấy tất cả hợp âm 
+const uniqeChords = HAC.extractChords(song.lyric); // Lấy vòng hợp âm cơ bản 
+// params thứ 2 (unique) mặc định là true
+```
+
 ## License 
 MIT license 
 
