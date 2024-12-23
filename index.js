@@ -48,7 +48,14 @@ class HAC {
             const html = await res.text();
             const $ = cheerio.load(html);
 
-            const lyric = $('#song-lyric').text().trim();
+            // const lyric = $('#song-lyric').text().trim();
+            const lyricArr = []; 
+            $('.chord_lyric_line').each((index, element) => {
+                const line = $(element).text().trim(); 
+                lyricArr.push(line); 
+            })
+            const lyric = lyricArr.join(' \n'); 
+
             const title = $('#song-title').text().trim();
             const artist = $('.perform-singer-list').text().trim();
 
